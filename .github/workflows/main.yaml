@@ -9,6 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+          node-version: '14'
+
+    - name: 'install'
+      run: npm i
 
     - name: Create task in tracker
       run: chmod +x ./.github/task.sh
+      
+    - name: 'test'
+      run: npm test
