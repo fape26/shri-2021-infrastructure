@@ -2,7 +2,7 @@ name: main
 on:
   push:
 jobs:
-  test-job:
+  release:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
