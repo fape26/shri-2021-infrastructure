@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-CURRENT_TAG=$(git tag | sort -r | head -1)
+CURRENT_TAG=$ git tag
 
 echo "CURRENT_TAG:"
 echo $CURRENT_TAG
