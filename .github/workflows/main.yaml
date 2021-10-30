@@ -16,5 +16,5 @@ jobs:
     - name: Create task in tracker
       run: sh ./.github/task.sh
       
-    - name: 'test'
-      run: npm test
+    #- name: 'test'
+      #run: npm test
