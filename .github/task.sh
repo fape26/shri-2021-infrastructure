@@ -1,6 +1,5 @@
 #!/usr/bin/env
 
-CURRENT_TAG_NAME=$(git tag -l)
+CURRENT_TAG=$(git tag | sort -r | head -1)
 
-echo "CURRENT_TAG_NAME:"
-echo $CURRENT_TAG_NAME
+echo $CURRENT_TAG
