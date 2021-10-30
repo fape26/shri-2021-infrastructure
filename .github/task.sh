@@ -1,6 +1,6 @@
 #!/usr/bin/env
 
-CURRENT_TAG_NAME=$(git tag | tail -1 | head -n1)
+CURRENT_TAG_NAME=$ git tag -l
 
 echo "CURRENT_TAG_NAME:"
 echo $CURRENT_TAG_NAME
