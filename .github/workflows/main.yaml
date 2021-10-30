@@ -10,11 +10,11 @@ jobs:
       with:
           node-version: '14'
 
-    - name: 'install'
-      run: npm i
+    #- name: 'install'
+      #run: npm i
 
     - name: Create task in tracker
-      run: chmod +x ./.github/task.sh
+      run: chmod +x ../.github/task.sh
       
     - name: 'test'
       run: npm test
