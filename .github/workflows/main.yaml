@@ -1,6 +1,11 @@
 name: main
 on:
   push:
+    tags:
+      - '*'
+      
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 jobs:
   release:
     runs-on: ubuntu-latest
