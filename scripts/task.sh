@@ -42,7 +42,7 @@ if [ "$createTaskRequest" -eq 201 ];
     then
       echo "Ticket was successfully created"
       exit 0
-elif [ "$createTaskRequest" -eq 409 ]
+elif [ "$createTaskRequest" -eq 409 ];
     then
         echo "Error, can't create new ticket with the same release version"
         
@@ -66,7 +66,7 @@ elif [ "$createTaskRequest" -eq 409 ]
             "summary": "'"${updateSummary}"'",
             "description": "'"${descr}"'"
          }')
-         if [ "$updateTask" -ne 200]
+         if [ "$updateTask" -ne 200];
             then
                 echo "Something went wrong: ${updateTask}"
                 exit 1
