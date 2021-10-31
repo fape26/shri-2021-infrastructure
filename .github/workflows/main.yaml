@@ -19,7 +19,7 @@ jobs:
       #run: npm i
 
     - name: Create task in tracker
-      run: sh ./.github/task.sh
+      run: sh .github/task.sh
       env:
           OAuth: ${{ secrets.OAuth }}
           OrganizationId: ${{ secrets.OrganizationId }}
