@@ -4,10 +4,11 @@ current_tag=$(git tag | tail -1 | head -n1)
 previous_tag=$(git tag | tail -2 | head -n1)
 author=$(git show ${current_tag} | grep Author: | head -1)
 date=$(git show ${current_tag} | grep Date: | head -1)
+changeLog=$(git log "$previous_tag".. --pretty=format:"%h - %s (%an, %ar)\n" | tr -s "\n" " ")
 
 summary="Created release task by lex8329 $current_tag"
 uniqueTag="lex8329/$current_tag"
-changeLog=$(git log "$previous_tag".. --pretty=format:"%h - %s (%an, %ar)\n" | tr -s "\n" " ")
+
 
 postTaskUrl="https://api.tracker.yandex.net/v2/issues/"
 
