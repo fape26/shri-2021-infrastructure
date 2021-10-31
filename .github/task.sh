@@ -42,7 +42,7 @@ elif ["$createTaskRequest" -eq 409]
     then
         echo "Error, can't create new ticket with the same release version"
         
-        findTask=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request POST ${findExistingTask} \
+        findTask=$(curl --silent --location --request POST ${findExistingTask} \
         --header "${headerAuth}" \
         --header "${headerOrgID}" \
         --header "${contentType}" \
@@ -50,6 +50,7 @@ elif ["$createTaskRequest" -eq 409]
             "filter": {
                 "unique": "'"${uniqueTag}"'"
               }
-              }' | jq -r '.[0].key')
+         }' | jq -r '.[0].key')
          echo "$findTask"
+         echo "$findExistingTask"
 fi
