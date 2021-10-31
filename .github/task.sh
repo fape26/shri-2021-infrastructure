@@ -4,13 +4,14 @@ current_tag=$(git tag | sort -r | head -n1)
 previous_tag=$(git tag | sort -r | tail -1 | head -n1)
 author=$(git show ${current_tag} | grep Author: | head -1)
 date=$(git show ${current_tag} | grep Date: | head -1)
-changeLog=$(git log  --pretty=format:"%h - %s (%an, %ar)\n" --date=short ${previous_tag}.${current_tag})
+changeLog=$(git log  --pretty=format:"%h - %s (%an, %ar)\n" ${previous_tag}.${current_tag})
 descr="Released by ${author}\n${date}\nChangelog:\n${changeLog}"
 
 echo "changeLog"
 echo $changeLog
 
 summary="Created release task by lex8329 $current_tag"
+updateSummary="Updated release task by lex8329 $current_tag"
 uniqueTag="lex8329/$current_tag"
 
 postTaskUrl="https://api.tracker.yandex.net/v2/issues/"
@@ -37,11 +38,11 @@ createTaskRequest=$(curl --write-out '%{http_code}' --silent --output /dev/null 
 
 echo $createTaskRequest
 
-if [ "$createTaskRequest" = 201 ]; 
+if [ ${createTaskRequest} = 201 ]; 
     then
       echo "Ticket was successfully created"
       exit 0
-elif ["$createTaskRequest" -eq 409]
+elif [ ${createTaskRequest} = 409 ]
     then
         echo "Error, can't create new ticket with the same release version"
         
@@ -54,6 +55,27 @@ elif ["$createTaskRequest" -eq 409]
                 "unique": "'"${uniqueTag}"'"
               }
          }' | jq -r '.[0].key')
-         echo "$findTask"
-         echo "$findExistingTask"
+         echo $findTask
+         echo "findExistingTask"
+         
+         updateTask=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request PATCH ${postTaskUrl}/${findTask} \
+        --header "${headerAuth}" \
+        --header "${headerOrgID}" \
+        --header "${contentType}" \
+        --data-raw '{
+            "summary": "'"${updateSummary}"'",
+            "description": "'"${descr}"'"
+         }')
+         if [${updateTask} = 200]
+            then
+                echo "Update successfull"
+                exit 0
+         elif [${updateTask} = 404]
+            then
+                echo "Not found"
+                exit 1
+         else 
+             echo "what the hell happened: ${updateTask}"
+             exit 1
+         fi
 fi
