@@ -2,10 +2,10 @@
 
 current_tag=$(git tag | tail -1 | head -n1)
 previous_tag=$(git tag | tail -2 | head -n1)
+changeLog=$(git log ${previous_tag}..${current_tag} --pretty=format:"%h - %s (%an, %ar)\n")
 author=$(git show ${current_tag} | grep Author: | head -1)
 date=$(git show ${current_tag} | grep Date: | head -1)
-changeLog=$(git log ${previous_tag}..${current_tag} --pretty=format:"%h - %s (%an, %ar)\n")
-descr="${author}\n${date}\n${changeLog}"
+descr="Released by ${author}\n${date}\nChangelog:\n${changeLog}"
 
 summary="Created release task by lex8329 $current_tag"
 uniqueTag="lex8329/$current_tag"
