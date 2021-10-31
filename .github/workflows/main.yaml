@@ -29,3 +29,9 @@ jobs:
       env:
           OAuth: ${{ secrets.OAuth }}
           OrganizationId: ${{ secrets.OrganizationId }}
+          
+    - name: 'Docker image'
+      run: sh ./scripts/docker.sh
+      env:
+          OAuth: ${{ secrets.OAuth }}
+          OrganizationId: ${{ secrets.OrganizationId }}
