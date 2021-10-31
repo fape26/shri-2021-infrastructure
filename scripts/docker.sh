@@ -9,9 +9,9 @@ headerAuth="Authorization: OAuth ${OAuth}"
 headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
-image="store_example:${current_tag}"
+imageDocker="store_example:${current_tag}"
 
-docker build . --file DockerFile -t ${image}
+docker build . -f Dockerfile -t ${imageDocker}
 
 if [ $? -ne 0 ];
   then
