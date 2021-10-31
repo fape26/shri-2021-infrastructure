@@ -11,7 +11,7 @@ contentType="Content-Type: application/json"
 
 imageDocker="estoreapp:${current_tag}"
 
-docker build . --file DockerFile -t ${imageDocker}
+docker build . -f Dockerfile -t ${imageDocker}
 
 if [ $? -ne 0 ];
   then
