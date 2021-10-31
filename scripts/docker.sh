@@ -9,14 +9,13 @@ headerAuth="Authorization: OAuth ${OAuth}"
 headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
-imageDocker="store_example:${current_tag}"
+imageDocker="estoreapp:${current_tag}"
 
-docker build . -f Dockerfile -t ${imageDocker}
+docker build . --file DockerFile -t ${imageDocker}
 
 if [ $? -ne 0 ];
   then
     echo "Error occurred, can't build docker image"
-    exit 1
 else
     findTask=$(curl --silent --location --request POST ${findExistingTask} \
         --header "${headerAuth}" \
