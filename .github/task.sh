@@ -29,7 +29,7 @@ createTaskRequest=$(curl --write-out '%{http_code}' --silent --output /dev/null 
     --header "${headerOrgID}" \
     --header "${contentType}" \
     --data-raw '{
-        "queue": "TMP",
+        "queue": "TREK",
         "summary": "'"${summary}"'",
         "type": "task",
         "description": "'"${descr}"'",
@@ -38,11 +38,11 @@ createTaskRequest=$(curl --write-out '%{http_code}' --silent --output /dev/null 
 
 echo $createTaskRequest
 
-if [ ${createTaskRequest} = 201 ]; 
+if [ "$createTaskRequest" -eq 201 ]; 
     then
       echo "Ticket was successfully created"
       exit 0
-elif [ ${createTaskRequest} = 409 ]
+elif [ "$createTaskRequest" -eq 409 ]
     then
         echo "Error, can't create new ticket with the same release version"
         
@@ -66,11 +66,11 @@ elif [ ${createTaskRequest} = 409 ]
             "summary": "'"${updateSummary}"'",
             "description": "'"${descr}"'"
          }')
-         if [${updateTask} = 200]
+         if [ "$updateTask" -eq 200]
             then
                 echo "Update successfull"
                 exit 0
-         elif [${updateTask} = 404]
+         elif ["$updateTask" -eq 404]
             then
                 echo "Not found"
                 exit 1
