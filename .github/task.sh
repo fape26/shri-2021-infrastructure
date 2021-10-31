@@ -27,9 +27,3 @@ createTaskRequest=$(curl --write-out '%{http_code}' --silent --output /dev/null 
     "description": "$changeLog",
     "unique": "$uniqueTag"
 }')
-
-echo "previous_tag:"
-echo $previous_tag
-
-echo "current_tag:"
-echo $current_tag
