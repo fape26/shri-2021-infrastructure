@@ -15,15 +15,16 @@ headerAuth="Authorization: OAuth ${OAuth}"
 headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
-responseStatus=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request POST ${postTaskUrl} \
+echo "create Task"
+createTaskRequest=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request POST ${postTaskUrl} \
 --header "$headerAuth" \
 --header "$headerOrgID" \
 --header "$contentType" \
 --data-raw '{
     "queue": "TREK",
-    "summary": "'"${summary}"'",
+    "summary": "$summary",
     "type": "task",
-    "description": "$changeLog}",
+    "description": "$changeLog",
     "unique": "$uniqueTag"
 }')
 
