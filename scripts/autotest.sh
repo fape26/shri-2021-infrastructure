@@ -10,9 +10,7 @@ headerAuth="Authorization: OAuth ${OAuth}"
 headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
-testRes=$(npm run test 2>&1)
-echo "dsfaasdfasdf"
-echo ${{toJson($testRes)}}
+testRes=$(npm run test 2>&1  | tr -s "\n" " ")
 
 findTask=$(curl --silent --location --request POST ${findExistingTask} \
         --header "${headerAuth}" \
