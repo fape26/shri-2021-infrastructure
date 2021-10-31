@@ -17,6 +17,8 @@ headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
 echo "create Task"
+echo $previous_tag
+
 createTaskRequest=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request POST ${postTaskUrl} \
 --header "$headerAuth" \
 --header "$headerOrgID" \
