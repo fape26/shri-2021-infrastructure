@@ -24,5 +24,8 @@ jobs:
           OAuth: ${{ secrets.OAuth }}
           OrganizationId: ${{ secrets.OrganizationId }}
       
-    #- name: 'test'
-      #run: npm test
+    - name: 'Run autotests'
+      run: sh ./scripts/autotest.sh
+      env:
+          OAuth: ${{ secrets.OAuth }}
+          OrganizationId: ${{ secrets.OrganizationId }}
