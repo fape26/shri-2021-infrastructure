@@ -66,16 +66,11 @@ elif [ "$createTaskRequest" -eq 409 ]
             "summary": "'"${updateSummary}"'",
             "description": "'"${descr}"'"
          }')
-         if [ "$updateTask" -eq 200]
+         if [ "$updateTask" -ne 200]
             then
-                echo "Update successfull"
-                exit 0
-         elif ["$updateTask" -eq 404]
-            then
-                echo "Not found"
+                echo "Something went wrong: ${updateTask}"
                 exit 1
          else 
-             echo "what the hell happened: ${updateTask}"
-             exit 1
+            echo "Update successfull"
          fi
 fi
