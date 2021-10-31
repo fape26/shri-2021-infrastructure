@@ -13,7 +13,7 @@ imageDocker="estoreapp:${current_tag}"
 
 docker build . --file DockerFile -t ${imageDocker}
 
-if [ $? != 0 ];
+if [ $? -ne 0 ];
   then
     echo "Error occurred, can't build docker image"
     exit 1
