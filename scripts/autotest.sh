@@ -24,16 +24,18 @@ findTask=$(curl --silent --location --request POST ${findExistingTask} \
 echo $findTask
          
 createCommentURL="https://api.tracker.yandex.net/v2/issues/${findTask}/comments"
-
-echo '{ "uri" : "/abc", "folder" : true },' | grep -Eo '"uri"[^,]*' | grep -Eo '[^:]*$'
+com1=$testRes process.json | tr { '\n' | tr , '\n' | tr } '\n' | grep "uri" | awk  -F'"' '{print $4}';
+echo $com1
 
 comment="Tests:\n${testRes}"
+
 createComment=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request POST ${createCommentURL} \
         --header "${headerAuth}" \
         --header "${headerOrgID}" \
         --header "${contentType}" \
-        --data-binary "'"$testRes"'"
-        )
+        --data-raw '{
+            "text": "'"${comment}"'"
+         }')
 echo $createComment
 
 if [ "$createComment" -ne 200 ];
