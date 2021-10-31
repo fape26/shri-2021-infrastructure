@@ -11,6 +11,8 @@ headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
 testRes=$(npm run test 2>&1)
+echo "dsfaasdfasdf"
+echo ${{toJson($testRes)}}
 
 findTask=$(curl --silent --location --request POST ${findExistingTask} \
         --header "${headerAuth}" \
@@ -24,8 +26,6 @@ findTask=$(curl --silent --location --request POST ${findExistingTask} \
 echo $findTask
          
 createCommentURL="https://api.tracker.yandex.net/v2/issues/${findTask}/comments"
-com1=${testRes} process.json | tr { '\n' | tr , '\n' | tr } '\n' | grep "uri" | awk  -F'"' '{print $4}';
-echo $com1
 
 comment="Tests:\n${testRes}"
 
