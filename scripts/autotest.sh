@@ -6,12 +6,11 @@ uniqueTag="lex8329/$current_tag"
 findExistingTask="https://api.tracker.yandex.net/v2/issues/_search"
 
 
-
 headerAuth="Authorization: OAuth ${OAuth}"
 headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
-testRes=$(npm run test 2>&1)
+testRes=$(npm run test 2>&1  | tr -s "\n" " ")
 
 findTask=$(curl --silent --location --request POST ${findExistingTask} \
         --header "${headerAuth}" \
