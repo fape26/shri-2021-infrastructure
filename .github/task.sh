@@ -23,8 +23,8 @@ createTaskRequest=$(curl --write-out '%{http_code}' --silent --output /dev/null 
 --header "$contentType" \
 --data-raw '{
     "queue": "TREK",
-    "summary": "$summary",
+    "summary": "'"{$summary}"'",
     "type": "task",
-    "description": "$changeLog",
-    "unique": "$uniqueTag"
+    "description": "'"{$changeLog}"'",
+    "unique": "'"{$uniqueTag}"'"
 }')
