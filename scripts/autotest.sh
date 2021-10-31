@@ -33,7 +33,7 @@ createComment=$(curl --write-out '%{http_code}' --silent --output /dev/null --lo
         --header "${headerOrgID}" \
         --header "${contentType}" \
         --data-binary "'"$testRes"'"
-         
+        )
 echo $createComment
 
 if [ "$createComment" -ne 200 ];
