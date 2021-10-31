@@ -52,3 +52,4 @@ elif ["$createTaskRequest" -eq 409]
               }
               }' | jq -r '.[0].key')
          echo "$findTask"
+fi
