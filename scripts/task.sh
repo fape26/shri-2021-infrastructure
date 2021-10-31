@@ -66,7 +66,7 @@ elif [ "$createTaskRequest" -eq 409 ];
             "summary": "'"${updateSummary}"'",
             "description": "'"${descr}"'"
          }')
-         if [ "$updateTask" -ne 200];
+         if [ "$updateTask" -ne 200 ];
             then
                 echo "Something went wrong: ${updateTask}"
                 exit 1
