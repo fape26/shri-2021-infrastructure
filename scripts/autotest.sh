@@ -34,6 +34,9 @@ createComment=$(curl --write-out '%{http_code}' --silent --output /dev/null --lo
         --data-raw '{
             "text": "'"${comment}"'",
          }')
+         
+echo $createComment
+
 if [ "$createComment" -ne 200 ];
 then
   echo "Error occurred in attempt to create comment"
