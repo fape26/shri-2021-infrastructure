@@ -24,7 +24,7 @@ findTask=$(curl --silent --location --request POST ${findExistingTask} \
 echo $findTask
          
 createCommentURL="https://api.tracker.yandex.net/v2/issues/${findTask}/comments"
-com1=$testRes process.json | tr { '\n' | tr , '\n' | tr } '\n' | grep "uri" | awk  -F'"' '{print $4}';
+com1=${testRes} process.json | tr { '\n' | tr , '\n' | tr } '\n' | grep "uri" | awk  -F'"' '{print $4}';
 echo $com1
 
 comment="Tests:\n${testRes}"
