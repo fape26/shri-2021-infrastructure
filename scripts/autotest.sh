@@ -10,7 +10,7 @@ headerAuth="Authorization: OAuth ${OAuth}"
 headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
-testRes=$(npm run test 2>&1  | tr -s "\n" " ")
+testRes=$(npm run test 2>&1)
 
 findTask=$(curl --silent --location --request POST ${findExistingTask} \
         --header "${headerAuth}" \
@@ -25,14 +25,14 @@ echo $findTask
          
 createCommentURL="https://api.tracker.yandex.net/v2/issues/${findTask}/comments"
 
+echo '{ "uri" : "/abc", "folder" : true },' | grep -Eo '"uri"[^,]*' | grep -Eo '[^:]*$'
+
 comment="Tests:\n${testRes}"
 createComment=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request POST ${createCommentURL} \
         --header "${headerAuth}" \
         --header "${headerOrgID}" \
         --header "${contentType}" \
-        --data-raw '{
-            "text": "'"${comment}"'",
-         }')
+        --data-binary "'"$testRes"'"
          
 echo $createComment
 
