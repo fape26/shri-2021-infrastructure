@@ -4,7 +4,7 @@ current_tag=$(git tag | tail -1 | head -n1)
 previous_tag=$(git tag | tail -2 | head -n1)
 author=$(git show ${current_tag} | grep Author: | head -1)
 date=$(git show ${current_tag} | grep Date: | head -1)
-changeLog=$(git log --pretty=format:"%h - %an, %cd : %s, %ce" --date=short ${previous_tag}..${current_tag})
+changeLog=$(git log ${current_tag})
 descr="Released by ${author}\n${date}\nChangelog:\n${changeLog}"
 
 echo "changeLog"
