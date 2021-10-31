@@ -18,7 +18,7 @@ contentType="Content-Type: application/json"
 echo "create Task"
 echo $previous_tag
 
-createStatusCode=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request POST ${postTaskUrl} \
+createTaskRequest=$(curl --write-out '%{http_code}' --silent --output /dev/null --location --request POST ${postTaskUrl} \
     --header "${headerAuth}" \
     --header "${headerOrgID}" \
     --header "${contentType}" \
@@ -29,3 +29,5 @@ createStatusCode=$(curl --write-out '%{http_code}' --silent --output /dev/null -
         "description": "'"${descr}"'",
         "unique": "'"${uniqueTag}"'"
     }')
+
+echo $createTaskRequest
