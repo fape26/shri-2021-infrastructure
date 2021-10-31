@@ -3,7 +3,7 @@ describe('Simple Test Case', () => {
         expect(2 + 2).toBe(4);
     });
     
-    it('Should return 6', () => {
-        expect(2 * 3).toBe(6);
+    it('Should return 10', () => {
+        expect(2 * 5).toBe(10);
     });
 });
