@@ -11,12 +11,12 @@ contentType="Content-Type: application/json"
 
 imageDocker="estoreapp:${current_tag}"
 
-docker build -f Dockerfile -t ${imageDocker}
+docker build . -f Dockerfile -t ${imageDocker}
 
 if [ $? -ne 0 ];
   then
     echo "Error occurred, can't build docker image"
-    exit 1
+
 else
     findTask=$(curl --silent --location --request POST ${findExistingTask} \
         --header "${headerAuth}" \
