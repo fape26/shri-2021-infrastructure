@@ -9,7 +9,7 @@ headerAuth="Authorization: OAuth ${OAuth}"
 headerOrgID="X-Org-Id: ${OrganizationId}"
 contentType="Content-Type: application/json"
 
-imageDocker="store_app:${current_tag}"
+imageDocker="estoreapp:${current_tag}"
 
 docker build . -f Dockerfile -t ${imageDocker}
 
