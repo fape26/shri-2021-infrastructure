@@ -7,6 +7,9 @@ author=$(git show ${current_tag} | grep Author: | head -1)
 date=$(git show ${current_tag} | grep Date: | head -1)
 descr="Released by ${author}\n${date}\nChangelog:\n${changeLog}"
 
+echo "changeLog"
+echo $changeLog
+
 summary="Created release task by lex8329 $current_tag"
 uniqueTag="lex8329/$current_tag"
 
